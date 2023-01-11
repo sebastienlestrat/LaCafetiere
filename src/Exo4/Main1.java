@@ -84,9 +84,7 @@ public class Main1 {
         // de la facturation dans le restaurant.
         if (client.tasse != null) {
             client.tasse = new Tasse();
-        }
-        else
-        {
+        } else {
             System.out.println("Le client " + client.nom + " n'a pas de tasse");
             // CEPENDANT, si sa commande est de plus de 100 ml,
             // une tasse de 500 ml lui est offerte, et son coût monte à 3 euros.
@@ -118,8 +116,7 @@ public class Main1 {
 
         }  //SINON SI le client paye plus que la somme exacte, envoie-lui un message de remerciements
         // et finis le traitement en lui rendant sa monnaie avec une courte note à cet effet.
-        else if (Integer.parseInt(resultPaid) >= 170 || Integer.parseInt(resultPaid) >= 2443)
-        {
+        else if (Integer.parseInt(resultPaid) >= 170 || Integer.parseInt(resultPaid) >= 2443) {
             JFrame thanks = new JFrame();
             JOptionPane.showMessageDialog(thanks, "Merci, bonne journée !");
             JFrame monnaie = new JFrame();
@@ -129,9 +126,8 @@ public class Main1 {
 
         //SINON SI le client n’a pas payé toute la somme,
         // soustrait l’argent donné à la facture totale et demande que le reste de la somme soit payé.
-        else if (Integer.parseInt(resultPaid) != 170 || Integer.parseInt(resultPaid) != 2443)
-        {
-            client.valeurFacture -= Integer.parseInt(resultPaid) ;
+        else if (Integer.parseInt(resultPaid) != 170 || Integer.parseInt(resultPaid) != 2443) {
+            client.valeurFacture -= Integer.parseInt(resultPaid);
             JFrame restant = new JFrame();
             JOptionPane.showMessageDialog(restant, "Il manque : " + client.valeurFacture + " cts ");
 
@@ -139,21 +135,21 @@ public class Main1 {
             //TANT QUE le client n’a pas payé l’ensemble de la somme,
             // envoie un message demandant le reste du paiement. Après 3 messages envoie le message :
             // au voleur, au voleur ! Mais que fait la police ? et sort de la boucle et finis le programme.
-          //  BOUCLE INFINI SEB !!!!!
-            while (Integer.parseInt(resultPaid) != 170 || Integer.parseInt(resultPaid) != 2443) {
-                JOptionPane.showMessageDialog(restant, "1ère fois : Il manque : " + client.valeurFacture + " cts ");
-                JOptionPane.showMessageDialog(restant, "2nde fois : Il manque : " + client.valeurFacture + " cts ");
-                JOptionPane.showMessageDialog(restant, "3ème fois : Il manque : " + client.valeurFacture + " cts ");
+            //  BOUCLE INFINI SEB !!!!!
+            int compteurWhile = 1;
+            while ((Integer.parseInt(resultPaid) != 170 || Integer.parseInt(resultPaid) != 2443) && compteurWhile <= 3) {
+                // Aussi possible de metrre une condition if dans ma while loop
+                //if (compteurWhile >= 4) {
+                  //  break;
+               // }
+                JOptionPane.showMessageDialog(restant, compteurWhile + "Il manque : " + client.valeurFacture + " cts ");
+                compteurWhile++;
             }
             JFrame voleur = new JFrame();
             JOptionPane.showMessageDialog(voleur, "Au voleur, au voleur ! Mais que fait la police ? ");
             System.exit(0);
         }
-
-
     }
-
-
 
     static JSlider getSlider(final JOptionPane optionPane) {
         JSlider slider = new JSlider();
